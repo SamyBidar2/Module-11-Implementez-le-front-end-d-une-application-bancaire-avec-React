@@ -1,4 +1,3 @@
-
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from '../../store/reducers/AuthSlice';
@@ -29,10 +28,11 @@ export const Header = () => {
       
       <div>
         {userStatus.connected ? (
-          <div className="main-nav-item">
-            <FontAwesomeIcon icon={faUserCircle} />
-            {currentUser && currentUser.userName}
-            
+          <div className="container">
+            <NavLink to={'/'} className="main-nav-item">
+              <FontAwesomeIcon icon={faUserCircle} />
+              {currentUser && currentUser.firstName}
+            </NavLink>
             <NavLink to={'/'} className="main-nav-item" onClick={handleLogout}>
               <FontAwesomeIcon icon={faSignOut} />
               Sign Out
