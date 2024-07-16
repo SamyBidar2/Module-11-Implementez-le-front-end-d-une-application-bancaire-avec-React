@@ -1,16 +1,22 @@
 import './index.css';
 import { Account } from '../../components/account';
+import { useState } from 'react';
 import { useSelector } from "react-redux";
+import { UserNameEdit } from '../../services/UserNameEdit';
 
 export const User = () => {
 
     const currentUser = useSelector((store) => store.auth.currentUser);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const openEditModal = () => setShowEditModal(true);
+    const closeEditModal = () => setShowEditModal(false);
+  
 
     return (
         <main className="main bg-dark">
             <div className="header">
                 <h1>Welcome back<br />{currentUser.firstName} {currentUser.lastName} !</h1>
-                <button className="edit-button">Edit Name</button>
+                <button className="edit-button" onClick={openEditModal}>Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
             <Account
@@ -31,6 +37,7 @@ export const User = () => {
                 description="Current Balance"
                 >
             </Account>
+            {showEditModal && <UserNameEdit show={showEditModal} handleClose={closeEditModal} />}
         </main>
     )
   }

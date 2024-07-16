@@ -18,9 +18,9 @@ export const login = async (email, password) => {
       
       if (result.body && result.body.token) {
         const token = result.body.token;
-        localStorage.setItem('Token', token);
+        sessionStorage.setItem('Token', token);
   
-        // récupération des donnnées du user
+        // récupération des donnnées du user si on est loggé
         const userDataResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
           method: "POST",
           headers: {

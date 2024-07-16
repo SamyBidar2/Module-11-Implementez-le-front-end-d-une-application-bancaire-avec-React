@@ -6,6 +6,7 @@ import { Footer } from "./components/footer";
 import { Home } from "./pages/home";
 import { SignIn } from "./pages/signIn";
 import { User } from "./pages/user";
+import { Error } from "./pages/error";
 
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
           <Route path ='/' element={<Home/>} />
           <Route path ='SignIn' element={<SignIn/>} />
           <Route path ='User' element={<User/>} />
-          {/* <Route path ="*" element={<Error/>} /> */}
+          <Route path ="*" element={<Error/>} />
         </Routes>
         <Footer/>
       </div>

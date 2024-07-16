@@ -31,7 +31,7 @@ export const Header = () => {
           <div className="container">
             <NavLink to={'/'} className="main-nav-item">
               <FontAwesomeIcon icon={faUserCircle} />
-              {currentUser && currentUser.firstName}
+              {currentUser && currentUser.userName}
             </NavLink>
             <NavLink to={'/'} className="main-nav-item" onClick={handleLogout}>
               <FontAwesomeIcon icon={faSignOut} />
