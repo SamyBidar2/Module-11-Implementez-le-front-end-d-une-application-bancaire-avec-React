@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentUser: undefined,
+  currentUser: ' ',
   userStatus: {
     connected: false,
   },
@@ -13,19 +13,19 @@ export const authSlice = createSlice({
   reducers: {
     loginSuccess(state, action) {
       state.currentUser = action.payload.user;
-      state.userStatus = { connected: true };
+      state.userStatus.connected = true;
     },
     userNameUpdate(state, action) {
-      state.userData.userName = action.payload;
+      state.currentUser.userName = action.payload;
     },
     loginFailure(state) {
       state.currentUser = undefined;
-      state.userStatus = { connected: false };
+      state.userStatus.connected = false;
     },
     logout(state) {
       state.currentUser = undefined;
-      state.userStatus = { connected: false };
-      localStorage.removeItem('Token');
+      state.userStatus.connected = false;
+      sessionStorage.removeItem('Token');
     }
   }
 });
