@@ -1,27 +1,35 @@
 .errorPage {
-    color: #00bc77;
-    text-align: center;
-    min-height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end; 
     align-items: center;
-    gap: 20px;
+    background: #fff; 
 }
 
-.errorTitle {
-    font-size: 100px;
+.errorImage {
+    width: 50%;
+    height: auto;
+    object-fit:cover;
+}
+
+.errorContent {
+    text-align: center;
+    margin-bottom: 60px;
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index:1;
 }
 
 .errorText {
     color: #00bc77;
     font-size: 36px;
     font-weight: 500;
+    margin: 10px 0;
 }
 
 .errorPage a {
     font-size: 16px;
     color: black;
     text-decoration: underline;
-
 }
