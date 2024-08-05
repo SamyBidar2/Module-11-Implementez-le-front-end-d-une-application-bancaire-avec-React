@@ -12,19 +12,24 @@ export const SignIn = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
-    const message = document.getElementById('error-message');
-    const loginFail = document.createElement('div'); 
-    
     e.preventDefault();
-    try {            
+    const messageContainer = document.getElementById('message-container');
+    if (messageContainer) {
+      messageContainer.innerHTML = ''; 
+    }
+
+    try {
       const { user } = await login(email, password);
       dispatch(loginSuccess({ user }));
       navigate('/User');
     } catch (error) {
       dispatch(loginFailure());
-      loginFail.classList.add('error-message');
-      loginFail.innerHTML = 'Login Failed, please try again';
-      message.appendChild(loginFail);
+      if (messageContainer) {
+        const loginFail = document.createElement('div');
+        loginFail.classList.add('error-message');
+        loginFail.innerHTML = error.message || 'Login Failed, please try again';
+        messageContainer.appendChild(loginFail);
+      }
     }
   };
 
@@ -46,9 +51,9 @@ export const SignIn = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button className="sign-in-button" type="submit">Sign In</button> 
+          <button className="sign-in-button" type="submit">Sign In</button>
         </form>
-        <div id='error-message'></div>
+        <div id="message-container"></div> 
       </section>
     </main>
   );

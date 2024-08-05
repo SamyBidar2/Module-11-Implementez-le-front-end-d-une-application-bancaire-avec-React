@@ -1,19 +1,5 @@
-// fonction login
+//fonction login
 export const login = async (email, password) => {
-  // Fonction utilitaire pour gérer les messages d'erreur
-  const handleError = (message) => {
-    const errorMessageElement = document.getElementById('error-message');
-    if (errorMessageElement) {
-      errorMessageElement.remove();
-    }
-    const messageContainer = document.getElementById('message-container');
-    const errorDiv = document.createElement('div');
-    errorDiv.id = 'error-message';
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
-    messageContainer.appendChild(errorDiv);
-  };
-
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/login', {
       method: 'POST',
@@ -24,7 +10,6 @@ export const login = async (email, password) => {
     });
 
     if (!response.ok) {
-      handleError('Login failed');
       throw new Error('Login failed');
     }
 
@@ -35,7 +20,7 @@ export const login = async (email, password) => {
       const token = result.body.token;
       sessionStorage.setItem('Token', token);
 
-      // récupération des donnnées du user si on est loggé
+      // récupère les données utilisateurs
       const userDataResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
         method: "POST",
         headers: {
@@ -45,7 +30,6 @@ export const login = async (email, password) => {
       });
 
       if (!userDataResponse.ok) {
-        handleError('Failed to fetch user data');
         throw new Error('Failed to fetch user data');
       }
 
@@ -54,17 +38,15 @@ export const login = async (email, password) => {
       
       return { user: userDataResult.body, token };
     } else {
-      handleError(result.message || 'Login failed');
       throw new Error(result.message || 'Login failed');
     }
   } catch (error) {
     console.error('Error during login:', error);
-    handleError(error.message);
     throw error;
   }
 };
 
-// fonction logout
+//fonction logout
 export const logout = () => {
   sessionStorage.removeItem('Token');
 };

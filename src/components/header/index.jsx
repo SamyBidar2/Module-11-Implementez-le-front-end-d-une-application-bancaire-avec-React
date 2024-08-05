@@ -29,7 +29,7 @@ export const Header = () => {
       <div>
         {userStatus.connected ? (
           <div className="container">
-            <NavLink to={'/'} className="main-nav-item">
+            <NavLink to={'#'} className="main-nav-item">
               <FontAwesomeIcon icon={faUserCircle} />
               {currentUser && currentUser.userName}
             </NavLink>
