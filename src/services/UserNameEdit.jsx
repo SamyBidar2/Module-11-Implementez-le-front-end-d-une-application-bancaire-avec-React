@@ -39,22 +39,20 @@ export const UserNameEdit = ({ show, handleClose }) => {
       }
 
       const result = await response.json();
-      console.log('Username update : ', result);
+      // console.log('Username update : ', result);
 
       if (result.body) {
-        console.log('IF ?? : ', result.body);
         dispatch(userNameUpdate(newUserName));
-        console.log('dispatch : ', result.body);
         setMessage('Your username has been successfully updated.');
         setShowSuccess(true);
-        console.log('body: ', result.body);
+        // console.log('body: ', result.body);
       } else {
         setMessage('Failed to update username');
-        console.error('Failed to update username');
+        // console.error('Failed to update username');
       }
     } catch (error) {
       setMessage('Error during username Update');
-      console.error('Error during username Update', error);
+      // console.error('Error during username Update', error);
     }
   };
 
